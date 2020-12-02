@@ -1,0 +1,107 @@
+body
+{
+    background-color: black;
+    color: lightgray;
+    font-size: 28px;
+    font-family: 'Xanh Mono', monospace;
+}
+
+#container
+{
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+}
+
+#plansza
+{
+    width: 890px;
+    border: solid 5px white;
+    text-align: center;
+    font-size: 48px;
+    min-height: 60px;
+}
+
+#szubienica
+{
+    float: left;
+    width: 450px;
+    text-align: center;
+    min-height: 280px;
+}
+
+#alfabet
+{
+    float: left;
+    width: 450px;
+    min-height: 280px;
+    text-align: center;
+}
+
+.litera
+{
+    float: left;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+    border: solid 3px gray;
+    border-radius: 15px;;
+    cursor: pointer;
+}
+
+.litera:hover
+{
+    background-color: #3a3a3a;
+    color: white;
+    border-color: white;
+}
+
+.reset
+{
+    cursor: pointer;
+}
+
+.reset:hover
+{
+    color:green;
+}
+
+#formContainer
+{
+    width: 960px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#enterPhrase
+{
+    height: 28px;
+    margin-left: 10px;
+    font-size: 28px;
+    font-family: 'Xanh Mono', monospace;
+    border-radius: 5px;
+    border-style: none;
+    width: auto;
+    width: 150px;/*Bo wielkość czcionki zmienia minimalną szerokość inputu...*/
+    min-width: 150px;
+}
+
+#enterPhrase:focus
+{
+    background-color: #80ff80;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+#enterConfirm
+{
+    height: 28px;
+    margin-left: 10px;
+}
