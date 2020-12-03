@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div id="container">
-		<div id="plansza">Hasło</div>
+		<div id="plansza">Wprowadź hasło poniżej</div>
 		<div id="szubienica">
 			<img src="img/s0.jpg" alt="" />
 		</div>
@@ -21,7 +21,8 @@
 		<div id="formContainer">
 					<label id="enterLabel" for="enterPhrase">Wprowadź nowe hasło</label>
 					<input id="enterPhrase" type="text" onkeyup="widerInput()"></input>
-				<button id="enterConfirm" type="button">Wprowadź</button>
+					<button class="buttons" id="hide" type="button" onclick="hideWord()">Ukryj</button>
+					<button class="buttons" id="enterConfirm" type="button" onclick="newWord(); widerInput()">Wprowadź</button>
 		</div>
 	</div>
 </body>

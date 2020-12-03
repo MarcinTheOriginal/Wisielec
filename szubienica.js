@@ -1,4 +1,5 @@
-var haslo = "Bez pracy nie ma kołaczy";
+var haslo = "";
+
 haslo = haslo.toUpperCase();
 
 var dlugosc = haslo.length;
@@ -8,12 +9,14 @@ var ukryteHaslo = "";
 var yes = new Audio("yes.wav");
 var no = new Audio("no.wav");
 
-for (i=0; i<dlugosc; i++)
-{
-    /*używam charAt(i) ponieważ zaglądam w ciąg, a JS ma problem widocznie z określaniem kolejnych pozycji w ciągu, gdybym z tego stworzył tablicę jak niżej z literkami to mogłbym użyć [i], a więc haslo.charAt(i) potrafi patrzeć na każdy element tego stringa po kolei i w tej pętli bierze po kolei elementy i patrzy, jeżeli ten element jest równy spacji, to dodaje spacje do końca nowego stringu jakim jest wykreskowane hasło (oczywiście żadko hasło zacznie się od spacji więc od razu wskoczy w else, gdzie doda się -), potem bierze drugi znak i znów porównuje czy to spacja czy coś innego i dodaje na końcu do poprzednio wygenerowanego znaku nowy snak czy to literę czy to spację*/
-    if (haslo.charAt(i) == " ") ukryteHaslo = ukryteHaslo + " "; 
-    else ukryteHaslo = ukryteHaslo + "-"
-    //W tym momencie mam oryginalny tekst, a wyświetlam "wypiszHaslo(); zakreskowany tekst
+function zakreskowanie(){
+    for (i=0; i<dlugosc; i++)
+    {
+        /*używam charAt(i) ponieważ zaglądam w ciąg, a JS ma problem widocznie z określaniem kolejnych pozycji w ciągu, gdybym z tego stworzył tablicę jak niżej z literkami to mogłbym użyć [i], a więc haslo.charAt(i) potrafi patrzeć na każdy element tego stringa po kolei i w tej pętli bierze po kolei elementy i patrzy, jeżeli ten element jest równy spacji, to dodaje spacje do końca nowego stringu jakim jest wykreskowane hasło (oczywiście żadko hasło zacznie się od spacji więc od razu wskoczy w else, gdzie doda się -), potem bierze drugi znak i znów porównuje czy to spacja czy coś innego i dodaje na końcu do poprzednio wygenerowanego znaku nowy snak czy to literę czy to spację*/
+        if (haslo.charAt(i) == " ") ukryteHaslo = ukryteHaslo + " "; 
+        else ukryteHaslo = ukryteHaslo + "-"
+        //W tym momencie mam oryginalny tekst, a wyświetlam "wypiszHaslo(); zakreskowany tekst
+    }
 }
 
 function wypiszHaslo()
@@ -60,8 +63,8 @@ litery[32]="Z"
 litery[33]="Ż"
 litery[34]="Ź"
 
-function start()//wypełnianie prawej części literkami alfabetu
-{
+function alfabet(){
+
     var trescDiva = "";
 
     for (i=0; i<35; i++)
@@ -73,9 +76,14 @@ function start()//wypełnianie prawej części literkami alfabetu
         //co 7 znak ma być nowa linia, za każdym stworzeniem diva pętla sprawdza czy konkretna iteracja i dzieli się bez 0 przez 7, jak nie to dodaje kolejnego diva, jak dzieli się bez reszty to dodaje diva, który generuje nową linię, a potem kontynuuje dodawanie divów
     }
 
-    document.getElementById("alfabet").innerHTML = trescDiva;//tutaj wpisuje ten ciąg divów do diva alfabet
+document.getElementById("alfabet").innerHTML = trescDiva;//tutaj wpisuje ten ciąg divów do diva alfabet
+}
 
-    wypiszHaslo();//wywołuję wypisanie ukrytego hałsa (zakreskowanego)
+function start()//wypełnianie prawej części literkami alfabetu
+{
+    zakreskowanie();
+    alfabet();
+    //wywołuję wypisanie ukrytego hałsa (zakreskowanego)
 }
 
 String.prototype.ustawZnak = function(miejsce, znak)
@@ -146,7 +154,35 @@ function widerInput()
     else document.getElementById("enterPhrase").style.width = "150px"
 }
 
-var noweHaslo = "";
-//zrobić by po wciśnięciu buttona "wprowadź" przekazało wprowadzone hasło do "noweHasło"
-//dodać przycisk, który zmienia text na password, żeby ukryć znaki wprowadzania
+function newWord() {
+    haslo = document.getElementById("enterPhrase").value;
+    haslo = haslo.toUpperCase();
+    dlugosc = haslo.length;
+    fuckUps = 0;
+    ukryteHaslo = "";
+    start();
+    wypiszHaslo();
+    clearInput();
+}
+
+var state = false
+function hideWord(){
+    if (state == false) {
+        document.getElementById("enterPhrase").type = "password";
+        document.getElementById("hide").innerHTML = "Odkryj";
+        document.getElementById("enterPhrase").focus();
+        state = true;
+    }
+    else{
+        document.getElementById("enterPhrase").type = "text";
+        document.getElementById("hide").innerHTML = "Ukryj";
+        document.getElementById("enterPhrase").focus();
+        state = false;
+    }    
+}
+
+function clearInput(){
+    document.getElementById("enterPhrase").value = "";
+}
+
 //dodać przycisk ztrzałkowy /\ i \/ żeby ukrywać i odkrywać pole do wprowadzania hasła
